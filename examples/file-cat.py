@@ -8,8 +8,7 @@ Created on Tue May 30 15:39:16 2017
 
 def fileOpenClose(fileName):
     file = open(fileName, "r")
-    lines = file.readlines()
-    for line in lines:
+    for line in file:
         print(line[:-1])
     file.close()
 
