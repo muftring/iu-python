@@ -14,6 +14,7 @@ def main():
     reverse = ""
     for i in range(1, len(forward)+1, 1):
         reverse += forward[-1*i]
-    print("The string",forward,"in reverse is",reverse)
+    print("You typed a string:", forward)
+    print("The string in reverse order is:", reverse)
     
 main()
