@@ -10,6 +10,7 @@
 #
 
 def main():
+    print("Print a string in reverse!")
     forward = input("Please enter a string: ")
     reverse = ""
     for i in range(1, len(forward)+1, 1):

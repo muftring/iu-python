@@ -9,6 +9,7 @@
 #
 
 def main():
+    print("File word counter!")
     wordCount = 0
     fileName = input("Please enter a file name: ")
     inputFile = open(fileName, "r")

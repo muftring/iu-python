@@ -14,6 +14,7 @@
 base = ord("a")-1
 
 def main():
+    print("Compute the numeric value of a word!")
     sum = 0
     name = input("Enter any name in lower case: ")
     for letter in name:

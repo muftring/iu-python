@@ -9,6 +9,7 @@
 #
 
 def main():
+    print("Palindrome checker!")
     forward = input("Enter a string to check: ")
     reverse = ""
     for i in range(1, len(forward)+1, 1):
@@ -16,6 +17,6 @@ def main():
     if (forward == reverse):
         print("The string is a palindrome.")
     else:
-        print("he string is not a palindrome.")
+        print("The string is not a palindrome.")
     
 main ()

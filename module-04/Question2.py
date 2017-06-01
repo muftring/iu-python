@@ -8,8 +8,10 @@
 # Write a program that takes an unsigned integer number from the user 
 # and prints the number in words.
 
+numbers = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+
 def main():
-    numbers = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+    print("Print a number in words!")
     number = input("Please enter a number: ")
     print("You typed a number:", number)
     print("The number in words is: ", end = '')
