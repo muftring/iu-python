@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Michael Uftring, Indiana University
 # I590 - Python, Summer 2017
@@ -6,6 +6,7 @@
 # Assignment 5, Question 4
 #
 # Compute and display the sum of squares of the numbers on each line read in from a file.
+#
 
 #
 """ squareEach(nums): square each numeric value in the provided list, place result in the provided list """
