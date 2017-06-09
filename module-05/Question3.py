@@ -10,6 +10,9 @@
 # (Note: I had already written factorial(n) as a function in the prior assignment)
 # 
 
+#
+""" factorial(n): compute the factorial of n """
+#
 def factorial(n):
     f = 1
     for i in range(1, n+1, 1): 
