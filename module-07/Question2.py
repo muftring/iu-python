@@ -5,6 +5,9 @@
 #
 # Assignment 7, Question 2
 #
+# A program which promts the user for a list of numbers, then determines if
+# the list is ordered (ascending or descending) and displays the result.
+#
 
 import math
 
