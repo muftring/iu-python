@@ -10,6 +10,9 @@
 
 import math
 
+#
+""" isPrime(n): checks whether `n` is prime using trial division approach (unoptimized)"""
+#
 def isPrime(n):
     if n <= 1: return False
     sqrt = int(math.sqrt(n))
@@ -17,6 +20,9 @@ def isPrime(n):
         if n % i == 0: return False
     return True
 
+#
+""" printPrime(lowerLimit, upperLimit): display the sequence of prime numbers between the lower and upper limits"""
+#
 def printPrime(lowerLimit, upperLimit):
     print("The sequence of prime numbers in the given interval:")
     for n in range(lowerLimit, upperLimit+1, 1):
