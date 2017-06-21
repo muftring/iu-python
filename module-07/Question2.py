@@ -11,6 +11,9 @@
 
 import math
 
+#
+""" isAscend(nums): check whether numbers in a list are sorted in ascending order, returns True/False """
+#
 def isAscend(nums):
     result = True
     prev = -1 * math.inf
@@ -22,6 +25,9 @@ def isAscend(nums):
             break
     return result
 
+#
+""" isDescend(nums): check whether numbers in a list are sorted in descending order, returns True/False """
+#
 def isDescend(nums):
     result = True
     prev = math.inf
@@ -33,6 +39,9 @@ def isDescend(nums):
             break
     return result
 
+#
+""" getNumbers(): prompt user to enter a list of numbers (separated by spaces), returns a list"""
+#
 def getNumbers():
     nums = []
     values = input("Enter numbers separated by a space: ")
