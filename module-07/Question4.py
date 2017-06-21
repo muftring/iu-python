@@ -5,6 +5,8 @@
 #
 # Assignment 7, Question 4
 #
+# Display the sequence of prime numbers within upper and lower bounds.
+#
 
 import math
 
@@ -22,15 +24,26 @@ def printPrime(lowerLimit, upperLimit):
             print(n)
 
 def main():
-    lowerLimit = eval(input("Enter the lower limit of the range: "))
-    if lowerLimit <= 0: 
-        print("Error - Invalid input: lower limit shoudl be apositive integer")
+    try:
+        lowerLimit = int(input("Enter the lower limit of the range: "))
+    except ValueError:
+        print("Error - Invalid input: lower limit should be a positive integer")
         return
-    upperLimit = eval(input("Enter the upper limit of the range: "))
+    if lowerLimit <= 0:
+        print("Error - Invalid input: lower limit should be a positive integer")
+        return
+    try:
+        upperLimit = int(input("Enter the upper limit of the range: "))
+    except ValueError:
+        print("Error - Invalid input: lower limit should be a positive integer")
+        return
+    if upperLimit <= 0:
+        print("Error - Invalid input: upper limit should be a positive integer")
+        return
     if upperLimit < lowerLimit:
         print("Error - Invalid input: the upper limit is less than the lower limit")
         return
-    printPrime(lowerLimit, upperLimit)
+    printPrime(int(lowerLimit), int(upperLimit))
 
 if __name__ == '__main__':
      main()
