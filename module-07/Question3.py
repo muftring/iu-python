@@ -8,6 +8,9 @@
 # User inputs a matrix, it is transposed, and both are displayed.
 #
 
+#
+""" inData(m, n): prompts user through entering an m-by-n sized matrix, returns 2-dimensional list (the matrix)"""
+#
 def inData(m, n):
     mx = []
     for i in range(m):
@@ -19,6 +22,9 @@ def inData(m, n):
         mx.append(row)
     return mx
 
+#
+""" transMx(mx): transposes an m-by-n matrix into an n-by-m matrix, returns 2-dimensional list (the transposed matrix) """
+#
 def transMx(mx):
     tx = []
     cols = len(mx[0])
@@ -30,6 +36,9 @@ def transMx(mx):
         tx.append(row)
     return tx
 
+#
+""" printMx(mx): displays a matrix in row-column style, very simple attempt at formatting values to pretty print """
+#
 def printMx(mx):
     for r in range(len(mx)):
         for c in range(len(mx[0])):
