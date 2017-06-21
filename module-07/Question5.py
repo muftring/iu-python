@@ -74,11 +74,11 @@ def game():
             print("You quit the game")
             return
         else:
-            print("Error - invalid input: please enter A, B or Q (to quit)")
+            print("Error - invalid input: please enter A, B or Q (to quit).")
             continue
         player = winner(scoreA, scoreB)
         if player != "":
-            print("Player {} wins the game".format(player))
+            print("Player {} wins the game.".format(player))
             break
         else:
             display(scoreA, scoreB)
