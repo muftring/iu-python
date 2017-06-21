@@ -29,10 +29,13 @@ def main():
         if number >= 0: positive += 1
         if number <  0: negative += 1
         value = input("Enter next number: ")
-    print("You entered {} numbers.".format(count))
-    print("The smallest number is {}".format(min))
-    print("The largest number is {}".format(max))
-    print("There are {} positive and {} negative numbers.".format(positive, negative))
+    if count > 0:
+        print("You entered {} numbers.".format(count))
+        print("The smallest number is {}".format(min))
+        print("The largest number is {}".format(max))
+        print("There are {} positive and {} negative numbers.".format(positive, negative))
+    else:
+        print("No numbers were entered.")
 
 if __name__ == '__main__':
      main()
