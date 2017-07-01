@@ -24,6 +24,9 @@ GradeForMidterm2       = (28, 28)
 
 AssignmentLabels = ["HW 0","HW 1","HW 2","HW 3","HW 4","HW 5","Lab 01","Lab 02","Lab 03","Lab 04","Lab 05","Lab 06","Lab 07","Lab 08","Lab 09","Lab 10","Lab 11","Final Project","Midterm 1","Quiz 01","Quiz 02","Quiz 03","Quiz 05","Quiz 06","Quiz 07","Quiz 08","Quiz 09","Quiz 10","Midterm 2"]
 
+#
+""" letterGrade(score): assign a letter grade based on the score """
+#
 def letterGrade(score):
     grade = "?"
     if score >= 93.0:
@@ -52,13 +55,18 @@ def letterGrade(score):
 
 def calculateStudentGrade(grades, divisors, weights):
     return np.sum((np.where(grades < 0, 0, grades) / divisors) * weights) * 100.0
-
+#
+""" setWeightsFor(a, r, w): sets the weights for s specific range of grades (assignment group) """
+#
 def setWeightsFor(a, r, w):
     r = range(r[0], r[1]+1)
     n = len(r)
     for i in r:
         a[i] = w/n
 
+#
+""" setupWeights(): this function sets the weights for all grading groups, the sum total = 1.00 """
+#
 def setupWeights():
     weights = np.zeros(29)
     setWeightsFor(weights, GradesForHomeworks,   WeightForHomeworks)
@@ -70,13 +78,16 @@ def setupWeights():
     return weights
 
 def main():
+    # setup the weights for grading
     weights = setupWeights()
+    # read in the data
     data = np.load("Grades.npy")
     rows, cols = data.shape
+    # first row is the divisor for each grade, when divided it will yield a percentage, e.g. 90/100 = 0.9
     divisors = data[0][1:]
     
     #
-    # student average and grade
+    # compute each student average and assign letter grade
     #
     studentNumericGrades = np.zeros((rows-1, 2))
     studentLetterGrades = np.empty((rows-1, 2), dtype='<U5')
@@ -96,7 +107,7 @@ def main():
     np.save("FinalGrades.npy", studentGrades)
     
     #
-    # class average and grade
+    # class average and letter grade
     #
     classAverage = np.empty((1, 2), dtype='<U5')
     classAvgNumeric = studentNumericGrades[:,[1]].sum() / len(studentNumericGrades[:,[1]])
@@ -108,7 +119,7 @@ def main():
     np.save("AverageGrades.npy", classAverage)
     
     #
-    # average of each assignment
+    # find the average of each assignment
     #
     assignmentAverage = np.zeros((cols-1, 2))
     assignmentAverageLabeled = np.zeros((cols-1, 2), dtype='<U15')
@@ -125,7 +136,13 @@ def main():
     np.save("AverageAssig.npy", assignmentAverageLabeled)
     
     #
-    # per assignment group
+    # find the average for each assignment group
+    #   Note: this should be refactored into a function which would perform the
+    #         averaging for a given group given a range of columns.
+    #         something like: averageGroup(data, column range)
+    #         the function would slice the data array on the column range, and compute the average
+    #         using the ndarray.sum() function, as is done below, and divide by count 
+    #         the return value would be the average for the group
     #
     print("")
     print("Per Assignment Group Averages")
