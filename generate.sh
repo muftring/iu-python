@@ -18,6 +18,10 @@ MODULE=
 while [ "$1" != "" ]
 do
   case $1 in
+   '-?' )
+      Usage
+      exit 0
+      ;;
     -m )
       MODULE=$2
       shift
@@ -29,6 +33,12 @@ do
   esac
   shift
 done
+
+if [ "$MODULE" == "" ]
+then
+  Usage
+  exit 0
+fi
 
 QUESTIONS=$@
 
