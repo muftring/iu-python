@@ -5,9 +5,13 @@
 #
 # Assignment 10, Question 1
 #
+# A stock trading simulation. Objective is to figure out the maximum best
+# possible return employing a series of buy and sell options automatically.
+# The decision to buy or sell is based on Up and Down trend determination
+# with a simple threshold on consecutive days within the trend. Buy and Sell
+# are executed on the daily Closing Price only.
+#
 
-import numpy as np
-import pandas as pd
 import pandas_datareader.data as web
 
 DataSource = 'google'
@@ -209,6 +213,9 @@ def getStockData():
     d = web.DataReader(symbol, DataSource, StartDate, EndDate)
     return d
 
+#
+""" test1(): a test for the invest() function """
+#
 def test1():
     d = getStockData()
     m = 1
