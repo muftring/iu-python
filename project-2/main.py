@@ -39,6 +39,8 @@ c2aIndex = pd.Series(AnColumns, index = AttributeColumns)
 Benign = 2
 Malignant = 4
 
+ShowFirstN = 10
+
 #
 """
 loadData(): loads the CSV file into a DataFrame, and performs some initial cleanup
@@ -188,6 +190,30 @@ def initialMeans(df):
 
 #
 """
+showFirstN(df, group, N):
+    ???
+"""
+#
+def showFirstN(df, group, N):
+    print("%5s%5s%10s%10s%10s" % ("N", "Index", "Id", "Class", "Predicted"))
+    for n in range(N):
+        idx = group[n]
+        print("%5d%5d%10d%10d%10d" % (n, idx, df.ix[idx].Scn, df.ix[idx].CLASS, df.ix[idx].Predicted))
+
+#
+"""
+printMeans(name, means, columns):
+    ???
+"""
+#
+def printMeans(name, means, columns):
+    print("{0}:".format(name), end='')
+    for idx in columns:
+        print(" {0}={1:.5f}".format(idx,means[idx]), end='')
+    print("")
+
+#
+"""
 main():
     load data, clean data, generate histograms and summary table
 """
@@ -197,6 +223,27 @@ def main():
     cleanData(df)
     generateHistograms(df, AnColumns)
     generateSummaryTable(df, AnColumns)
+    
+    u2, u4 = initialMeans(df)
+    for i in range(1500):
+        group2, group4 = classify(df, u2, u4)
+        u2, u4 = recomputeMeans(df, group2, group4)
+    # add Predicted column to DataFrame
+    s = pd.Series(0, index=group2+group4)
+    s[group2] = 2
+    s[group4] = 4
+    df['Predicted'] = s
+    # display summary
+    print("Final Means")
+    printMeans("u2", u2, AnColumns)
+    printMeans("u4", u4, AnColumns)
+    print("")
+    print("Cluster Assignment: u2")
+    showFirstN(df, group2, ShowFirstN)
+    print("")
+    print("Cluster Assignment: u4")
+    showFirstN(df, group4, ShowFirstN)
+    print("")
 
 if __name__ == '__main__':
     main()
