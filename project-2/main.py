@@ -84,7 +84,7 @@ generateSummaryTable(df, variables):
 """
 #
 def generateSummaryTable(df, variables):
-    print("\Statistic Summary Table")
+    print("\nStatistic Summary Table")
     print("%-30s%9s%9s%9s%9s%9s%9s" % (
                 "Attribute", 
                 "Min", 
