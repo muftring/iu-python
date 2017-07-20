@@ -5,6 +5,9 @@
 #
 # Final Project, Phase 2
 #
+# Phase 1: statistical analysis of the data, including plotting histograms
+# Phase 2: classification of the data using k-means method
+#
 
 import numpy as np
 import pandas as pd
@@ -39,7 +42,8 @@ c2aIndex = pd.Series(AnColumns, index = AttributeColumns)
 Benign = 2
 Malignant = 4
 
-ShowFirstN = 10
+KMeansIterations = 1500
+ShowFirstN = 20
 
 #
 """
@@ -80,6 +84,7 @@ generateSummaryTable(df, variables):
 """
 #
 def generateSummaryTable(df, variables):
+    print("\Statistic Summary Table")
     print("%-30s%9s%9s%9s%9s%9s%9s" % (
                 "Attribute", 
                 "Min", 
@@ -129,6 +134,7 @@ generateHistograms(df, variables):
 """
 #
 def generateHistograms(df, variables):
+    print("\nGenerating Histograms...")
     for variable in variables:
         attribute = a2cIndex[variable]
         title = variable + " : " + attribute
@@ -191,7 +197,7 @@ def initialMeans(df):
 #
 """
 showFirstN(df, group, N):
-    ???
+    display the first N rows in df (a DataFrame), show the Class and Predicted Class
 """
 #
 def showFirstN(df, group, N):
@@ -203,13 +209,48 @@ def showFirstN(df, group, N):
 #
 """
 printMeans(name, means, columns):
-    ???
+    display values in mean (which is a Series) specified by columns
 """
 #
 def printMeans(name, means, columns):
     print("{0}:".format(name), end='')
     for idx in columns:
         print(" {0}={1:.5f}".format(idx,means[idx]), end='')
+    print("")
+
+#
+"""
+runClassification(df):
+    using k-means, attempt to classify the data in df (a DataFrame) into one of the
+    two classes: 2-Benign, 4-Malignant
+"""
+#
+def runClassification(df):
+    print("\nRunning k-means Classification with",KMeansIterations,"iterations (please be patient)")
+    # randomly select inital means
+    u2, u4 = initialMeans(df)
+    # iteratively run classification -> recompute means
+    for i in range(KMeansIterations):
+        # print a "progress dot" every iteration
+        print(".", end = "", flush=True)
+        group2, group4 = classify(df, u2, u4)
+        u2, u4 = recomputeMeans(df, group2, group4)
+    # add Predicted column to DataFrame, and store predicted classifications
+    predicted = pd.Series(0, index=df.index)
+    predicted[group2] = 2
+    predicted[group4] = 4
+    df['Predicted'] = predicted
+    # display summary
+    print("")
+    print("Final Means")
+    printMeans("u2", u2, AnColumns)
+    printMeans("u4", u4, AnColumns)
+    print("")
+    print("Cluster Assignment: u2")
+    showFirstN(df, group2, ShowFirstN)
+    print("")
+    print("Cluster Assignment: u4")
+    showFirstN(df, group4, ShowFirstN)
     print("")
 
 #
@@ -223,27 +264,7 @@ def main():
     cleanData(df)
     generateHistograms(df, AnColumns)
     generateSummaryTable(df, AnColumns)
-    
-    u2, u4 = initialMeans(df)
-    for i in range(1500):
-        group2, group4 = classify(df, u2, u4)
-        u2, u4 = recomputeMeans(df, group2, group4)
-    # add Predicted column to DataFrame
-    s = pd.Series(0, index=group2+group4)
-    s[group2] = 2
-    s[group4] = 4
-    df['Predicted'] = s
-    # display summary
-    print("Final Means")
-    printMeans("u2", u2, AnColumns)
-    printMeans("u4", u4, AnColumns)
-    print("")
-    print("Cluster Assignment: u2")
-    showFirstN(df, group2, ShowFirstN)
-    print("")
-    print("Cluster Assignment: u4")
-    showFirstN(df, group4, ShowFirstN)
-    print("")
+    runClassification(df)
 
 if __name__ == '__main__':
     main()
