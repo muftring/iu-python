@@ -201,10 +201,10 @@ showFirstN(df, group, N):
 """
 #
 def showFirstN(df, group, N):
-    print("%5s%5s%10s%10s%10s" % ("N", "Index", "Id", "Class", "Predicted"))
+    print("%6s%6s%10s%10s%10s" % ("N", "Index", "Id", "Class", "Predicted"))
     for n in range(N):
         idx = group[n]
-        print("%5d%5d%10d%10d%10d" % (n, idx, df.ix[idx].Scn, df.ix[idx].CLASS, df.ix[idx].Predicted))
+        print("%6d%6d%10d%10d%10d" % (n, idx, df.ix[idx].Scn, df.ix[idx].CLASS, df.ix[idx].Predicted))
 
 #
 """
@@ -241,17 +241,13 @@ def runClassification(df):
     predicted[group4] = 4
     df['Predicted'] = predicted
     # display summary
-    print("")
-    print("Final Means")
+    print("\nFinal Means")
     printMeans("u2", u2, AnColumns)
     printMeans("u4", u4, AnColumns)
-    print("")
-    print("Cluster Assignment: u2")
+    print("\nCluster Assignment: u2")
     showFirstN(df, group2, ShowFirstN)
-    print("")
-    print("Cluster Assignment: u4")
+    print("\nCluster Assignment: u4")
     showFirstN(df, group4, ShowFirstN)
-    print("")
 
 #
 """
