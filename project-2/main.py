@@ -27,6 +27,7 @@ ColumnNames = ['SampleCodeNumber',
                'Mitoses',
                'Class']
 
+AllColumns = ['Scn','A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10', 'CLASS']
 AnColumns = ['A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10']
 AttributeColumns = ColumnNames
 AttributeColumns.remove('SampleCodeNumber')
@@ -229,6 +230,9 @@ def runClassification(df):
     print("\nRunning k-means Classification with",KMeansIterations,"iterations (please be patient)")
     # randomly select inital means
     u2, u4 = initialMeans(df)
+    print("\nInitial Means (all columns)")
+    printMeans("u2", u2, AllColumns)
+    printMeans("u4", u4, AllColumns)
     # iteratively run classification -> recompute means
     for i in range(KMeansIterations):
         # print a "progress dot" every iteration
