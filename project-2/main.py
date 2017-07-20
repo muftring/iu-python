@@ -237,16 +237,16 @@ def runClassification(df):
         u2, u4 = recomputeMeans(df, group2, group4)
     # add Predicted column to DataFrame, and store predicted classifications
     predicted = pd.Series(0, index=df.index)
-    predicted[group2] = 2
-    predicted[group4] = 4
+    predicted[group2] = Benign
+    predicted[group4] = Malignant
     df['Predicted'] = predicted
     # display summary
     print("\nFinal Means")
     printMeans("u2", u2, AnColumns)
     printMeans("u4", u4, AnColumns)
-    print("\nCluster Assignment: u2")
+    print("\nCluster Assignment: u2-Benign")
     showFirstN(df, group2, ShowFirstN)
-    print("\nCluster Assignment: u4")
+    print("\nCluster Assignment: u4-Malignant")
     showFirstN(df, group4, ShowFirstN)
 
 #
