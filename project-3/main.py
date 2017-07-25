@@ -340,7 +340,7 @@ def assessPerformance(df):
     errorM = errorRate(df.Predicted, df.CLASS, Malignant)
     print("\nError Rates:")
     print("  ErrorB      = {0:.5f}".format(errorB))
-    print("  ErrorB      = {0:.5f}".format(errorM))
+    print("  ErrorM      = {0:.5f}".format(errorM))
     print("  Total Error = {0:.5f}".format(errorB + errorM))
 
 #
